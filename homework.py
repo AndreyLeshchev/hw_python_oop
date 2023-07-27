@@ -68,6 +68,7 @@ class Running(Training):
         super().__init__(action, duration, weight)
 
     def get_spent_calories(self) -> float:
+        """Получить количество затраченных калорий."""
         time_in_minutes: float = self.duration * self.MINUTES
         return ((self.CALORIES_MEAN_SPEED_MULTIPLIER * self.get_mean_speed()
                 + self.CALORIES_MEAN_SPEED_SHIFT) * self.weight / self.M_IN_KM
@@ -95,6 +96,7 @@ class SportsWalking(Training):
         self.height = height
 
     def get_spent_calories(self) -> float:
+        """Получить количество затраченных калорий."""
         metors_in_sec: float = self.get_mean_speed() * self.K_3
         height_in_metor: float = self.height / self.SM_IN_M
         time_in_minutes: float = self.duration * self.MINUTES
