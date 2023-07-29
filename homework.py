@@ -1,4 +1,5 @@
-from dataclasses import dataclass
+from dataclasses import dataclass, asdict
+
 
 @dataclass
 class InfoMessage:
@@ -8,15 +9,14 @@ class InfoMessage:
     distance: float
     speed: float
     calories: float
-        
+    message = ('Тип тренировки: {}; Длительность: {:.3f} ч.;'
+               'Дистанция: {:.3f} км; Ср. скорость: {:.3f} км/ч;'
+               'Потрачено ккал: {:.3f}.')
+
+
     def get_message(self) -> str:
         """Возвращает строку информационного сообщения."""
-        return (f'Тип тренировки: {self.training_type}; '
-                f'Длительность: {self.duration:.3f} ч.; '
-                f'Дистанция: {self.distance:.3f} км; '
-                f'Ср. скорость: {self.speed:.3f} км/ч; '
-                f'Потрачено ккал: {self.calories:.3f}.')
-
+        return self.message.format(*asdict(self).values())
 
 class Training:
     """Базовый класс тренировки."""
@@ -57,13 +57,7 @@ class Running(Training):
     """Тренировка: бег."""
     CALORIES_MEAN_SPEED_MULTIPLIER: int = 18
     CALORIES_MEAN_SPEED_SHIFT: float = 1.79
-
-    def __init__(self,
-                 action: int,
-                 duration: float,
-                 weight: float) -> None:
-        super().__init__(action, duration, weight)
-
+        
     def get_spent_calories(self) -> float:
         """Получить количество затраченных калорий."""
         time_in_minutes: float = self.duration * self.MINUTES
@@ -79,14 +73,14 @@ class SportsWalking(Training):
     K_3: float = 0.278  # Коэффициент для перевода км/ч -> м/c.
     SM_IN_M: int = 100
 
-    def __init__(self,
-                 action: int,
-                 duration: float,
-                 weight: float,
-                 height: float) -> None:
-        super().__init__(action,
-                         duration,
-                         weight)
+    def __init__(self, 
+                 action: int, 
+                 duration: float, 
+                 weight: float, 
+                 height: float) -> None: 
+        super().__init__(action, 
+                         duration, 
+                         weight) 
         self.height = height
 
     def get_spent_calories(self) -> float:
