@@ -13,10 +13,10 @@ class InfoMessage:
                'Дистанция: {:.3f} км; Ср. скорость: {:.3f} км/ч;'
                'Потрачено ккал: {:.3f}.')
 
-
     def get_message(self) -> str:
         """Возвращает строку информационного сообщения."""
         return self.message.format(*asdict(self).values())
+
 
 class Training:
     """Базовый класс тренировки."""
@@ -104,15 +104,19 @@ class Swimming(Training):
     CALORIES_MEAN_SPEED_SHIFT: float = 1.1
     CALORIES_WEIGHT: int = 2
 
-    def __init__(self, 
-                 action: int, 
-                 duration: float, 
-                 weight: float, 
-                 length_pool: int, 
-                 count_pool: int):
-        super().__init__(action, 
-                         duration, 
-                         weight)
+    def __init__(
+            self,
+            action: int,
+            duration: float,
+            weight: float,
+            length_pool: int,
+            count_pool: int
+        ) -> None:
+        super().__init__(
+            action, 
+            duration, 
+            weight
+        )
         self.length_pool = length_pool
         self.count_pool = count_pool
 
@@ -132,7 +136,8 @@ def read_package(workout_type: str, data: list) -> Training:
     trainings: dict = {
         'SWM': Swimming,
         'RUN': Running,
-        'WLK': SportsWalking}
+        'WLK': SportsWalking
+    }
     return trainings[workout_type](*data)
 
 
