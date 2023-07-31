@@ -47,20 +47,20 @@ class Training:
     def get_spent_calories(self) -> float:
         """Получить количество затраченных калорий."""
         raise NotImplementedError(
-                        f'Метод {self.get_spent_calories.__name__} '
-                        'должен быть реализован в подклассе '
-                        f'{self.__class__.__name__}'
-                        )
+            f'Метод {self.get_spent_calories.__name__} '
+            'должен быть реализован в подклассе '
+            f'{self.__class__.__name__}'
+        )
 
     def show_training_info(self) -> InfoMessage:
         """Вернуть информационное сообщение о выполненной тренировке."""
         return InfoMessage(
-                    self.__class__.__name__,
-                    self.duration,
-                    self.get_distance(),
-                    self.get_mean_speed(),
-                    self.get_spent_calories()
-                    )
+            self.__class__.__name__,
+            self.duration,
+            self.get_distance(),
+            self.get_mean_speed(),
+            self.get_spent_calories()
+        )
 
 
 class Running(Training):
@@ -84,10 +84,10 @@ class SportsWalking(Training):
     CM_IN_M: int = 100
 
     def __init__(
-            self, action: int,
-            duration: float, weight: float,
-            height: float,
-            ) -> None:
+        self, action: int,
+        duration: float, weight: float,
+        height: float,
+    ) -> None:
         super().__init__(action, duration, weight)
         self.height = height
 
@@ -109,10 +109,10 @@ class Swimming(Training):
     CALORIES_WEIGHT: int = 2
 
     def __init__(
-            self, action: int,
-            duration: float, weight: float,
-            length_pool: int, count_pool: int,
-            ) -> None:
+        self, action: int,
+        duration: float, weight: float,
+        length_pool: int, count_pool: int,
+    ) -> None:
         super().__init__(action, duration, weight)
         self.length_pool = length_pool
         self.count_pool = count_pool
