@@ -10,12 +10,12 @@ class InfoMessage:
     speed: float
     calories: float
     RESULT_MESSAGE = (
-        'Тип тренировки: {training_type}; '
-        'Длительность: {duration:.3f} ч.; '
-        'Дистанция: {distance:.3f} км; '
-        'Ср. скорость: {speed:.3f} км/ч; '
-        'Потрачено ккал: {calories:.3f}.'
-        )
+                'Тип тренировки: {training_type}; '
+                'Длительность: {duration:.3f} ч.; '
+                'Дистанция: {distance:.3f} км; '
+                'Ср. скорость: {speed:.3f} км/ч; '
+                'Потрачено ккал: {calories:.3f}.'
+                )
 
     def get_message(self) -> str:
         """Возвращает строку информационного сообщения."""
@@ -47,20 +47,20 @@ class Training:
     def get_spent_calories(self) -> float:
         """Получить количество затраченных калорий."""
         raise NotImplementedError(
-            f'Метод {self.get_spent_calories.__name__} '
-            'должен быть реализован в подклассе '
-            f'{self.__class__.__name__}'
-            )
+                            f'Метод {self.get_spent_calories.__name__} '
+                            'должен быть реализован в подклассе '
+                            f'{self.__class__.__name__}'
+                            )
 
     def show_training_info(self) -> InfoMessage:
         """Вернуть информационное сообщение о выполненной тренировке."""
         return InfoMessage(
-            self.__class__.__name__,
-            self.duration,
-            self.get_distance(),
-            self.get_mean_speed(),
-            self.get_spent_calories()
-        )
+                        self.__class__.__name__,
+                        self.duration,
+                        self.get_distance(),
+                        self.get_mean_speed(),
+                        self.get_spent_calories()
+                        )
 
 
 class Running(Training):
