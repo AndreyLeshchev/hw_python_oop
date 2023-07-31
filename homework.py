@@ -60,7 +60,7 @@ class Training:
             self.get_distance(),
             self.get_mean_speed(),
             self.get_spent_calories()
-            )
+        )
 
 
 class Running(Training):
@@ -84,10 +84,10 @@ class SportsWalking(Training):
     CM_IN_M: int = 100
 
     def __init__(
-            self, action: int,
-            duration: float, weight: float,
-            height: float,
-            ) -> None:
+        self, action: int,
+        duration: float, weight: float,
+        height: float,
+    ) -> None:
         super().__init__(action, duration, weight)
         self.height = height
 
@@ -109,10 +109,10 @@ class Swimming(Training):
     CALORIES_WEIGHT: int = 2
 
     def __init__(
-            self, action: int,
-            duration: float, weight: float,
-            length_pool: int, count_pool: int,
-            ) -> None:
+        self, action: int,
+        duration: float, weight: float,
+        length_pool: int, count_pool: int,
+    ) -> None:
         super().__init__(action, duration, weight)
         self.length_pool = length_pool
         self.count_pool = count_pool
@@ -134,7 +134,7 @@ def read_package(workout_type: str, data: list[int]) -> Training:
         'SWM': Swimming,
         'RUN': Running,
         'WLK': SportsWalking,
-        }
+    }
     if workout_type not in types_of_training:
         raise KeyError('Ошибка - операция не найдена')
     return types_of_training[workout_type](*data)
@@ -151,7 +151,7 @@ if __name__ == '__main__':
         ('SWM', [720, 1, 80, 25, 40]),
         ('RUN', [15000, 1, 75]),
         ('WLK', [9000, 1, 75, 180]),
-        ]
+    ]
 
     for workout_type, data in packages:
         training = read_package(workout_type, data)
